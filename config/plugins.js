@@ -1,7 +1,16 @@
+const crypto = require('crypto');
+
 module.exports = ({ env }) => ({
   i18n: true,
   'strapi-plugin-ja-pack': {
     enabled: true,
+  },
+  'users-permissions': {
+    config: {
+      jwtSecret:
+        env('JWT_SECRET') ||
+        crypto.randomBytes(16).toString('base64'),
+    },
   },
   upload: {
     config: {
